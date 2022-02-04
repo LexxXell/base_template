@@ -1,1 +1,18 @@
 version: "3"
+
+services:
+
+  python:
+    build: 
+      context: ./python
+      dockerfile: Dockerfile
+      args:
+        - PYTHON_IMAGE_VERSION
+        - OS_DEPS
+        - PYTHON_OS_DEPS
+        - USER_NAME
+        - USER_ID
+        - HOME_DIR
+        - PIPENV_DEV
+    env_file:
+      - ./.env
