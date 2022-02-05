@@ -1,9 +1,13 @@
 version: "3"
 
+volumes:
+  redisdata:
+    driver: local
+
 services:
 
   python:
-    build: 
+    build:
       context: ./python
       dockerfile: Dockerfile
       args:
@@ -16,3 +20,24 @@ services:
         - PIPENV_DEV
     env_file:
       - ./.env
+    depends_on:
+      - redis
+    networks:
+      - backend
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+      args:
+        - REDIS_IMAGE_VERSION
+    env_file:
+      - ./.env
+    volumes:
+      - redisdata:/data/bases
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
