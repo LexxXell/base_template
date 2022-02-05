@@ -1,1 +1,18 @@
 version: "3"
+
+services:
+
+  nodejs:
+    build: 
+      context: ./nodejs
+      dockerfile: Dockerfile
+      args:
+        - NODE_IMAGE_VERSION
+        - NODE_LAUNCH_COMMAND
+        - OS_DEPS
+        - NODE_OS_DEPS
+        - USER_NAME
+        - USER_ID
+        - HOME_DIR
+    env_file:
+      - ./.env
