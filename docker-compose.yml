@@ -26,7 +26,11 @@ services:
       - backend
 
   postgres:
-    image: postgres:13-alpine
+    build: 
+      context: ./postgres
+      dockerfile: Dockerfile
+      args:
+        - POSTGRES_IMAGE_VERSION
     volumes:
       - pgdata:/var/lib/postgresql/data
     env_file:
