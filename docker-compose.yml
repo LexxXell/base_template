@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  pgdata:
+    driver: local
+
 services:
 
   python:
@@ -15,4 +19,21 @@ services:
         - HOME_DIR
         - PIPENV_DEV
     env_file:
+      - ./.env    
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:13-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
       - ./.env
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
