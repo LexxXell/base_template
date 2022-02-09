@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  pgdata:
+    driver: local
+
 services:
 
   nginx:
@@ -31,6 +35,21 @@ services:
         - USER_ID
         - HOME_DIR
         - PIPENV_DEV
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  postgres:
+    build: 
+      context: ./postgres
+      dockerfile: Dockerfile
+      args:
+        - POSTGRES_IMAGE_VERSION
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     env_file:
       - ./.env
     networks:
