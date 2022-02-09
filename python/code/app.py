@@ -11,15 +11,7 @@ api_port = env.get("API_PORT", 8000)
 
 @app.route("/api_v1_py/")
 def check_api():
-    return jsonify({ "error": False, "message": "API v1 Python is available" })
-
-@app.route("/api_v1_py/check_postgres")
-def check_postgres():
-    return jsonify({ "error": True, "message": "Not used in this application..." })
-
-@app.route("/api_v1_py/check_redis")
-def check_redis():
-    return jsonify({ "error": True, "message": "Not used in this application..." })
+    return jsonify({ "error": False, "message": "API.v1 is available" })
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=api_port)
