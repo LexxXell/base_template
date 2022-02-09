@@ -6,42 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
     <title>Connection checker</title>
 </head>
 
 <body>
-    <table class="i_t">
-        <caption class="i_t__c">
-            <h1 class="i_t__c__h1">Applications connection status</h1>
-        </caption>
-        <tr class="i_t__tr">
-            <td class="i_t__td">
-                <h3 class="i_t__h3">API v1</h3>
-                <h4 class="i_t__h4">Python</h4>
-                <p class="i_t__p_e" id="api_py_info">ERROR: API not available...</p>
-                <h4 class="i_t__h4">NodeJS</h4>
-                <p class="i_t__p_e" id="api_no_info">ERROR: API not available...</p>
-            </td>
-        </tr>
-        <tr class="i_t__tr">
-            <td class="i_t__td">
-                <h3 class="i_t__h3">PostgreSQL</h3>
-                <h4 class="i_t__h4">Python</h4>
-                <p class="i_t__p_e" id="postgres_py_info">ERROR: PostgreSQL not available...</p>
-                <h4 class="i_t__h4">NodeJS</h4>
-                <p class="i_t__p_e" id="postgres_no_info">ERROR: PostgreSQL not available...</p>
-            </td>
-        </tr>
-        <tr class="i_t__tr">
-            <td class="i_t__td">
-                <h3 class="i_t__h3">Redis</h3>
-                <h4 class="i_t__h4">Python</h4>
-                <p class="i_t__p_e" id="redis_py_info">ERROR: Redis not available...</p>
-                <h4 class="i_t__h4">NodeJS</h4>
-                <p class="i_t__p_e" id="redis_no_info">ERROR: Redis not available...</p>
-            </td>
-        </tr>
-    </table>
+
+    <div class="--main">
+        <div>
+            <h1>Application connection status</h1>
+            <h2 id="info-header">No apps found</h2>
+        </div>
+        <div id="py-div" class="--hide">
+            <h3>Python</h3>
+            <p class="--p-err" id="api_py_info"></p>
+            <p class="--p-err" id="postgres_py_info"></p>
+            <p class="--p-err" id="redis_py_info"></p>
+        </div>
+        <div id="no-div" class="--hide">
+            <h3>NodeJS</h3>
+            <p id="api_no_info"></p>
+            <p id="postgres_no_info"></p>
+            <p class="--p-err" id="redis_no_info"></p>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 
