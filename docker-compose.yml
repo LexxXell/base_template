@@ -2,6 +2,23 @@ version: "3"
 
 services:
 
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+      args:
+        - NGINX_IMAGE_VERSION
+    env_file:
+      - ./.env
+    depends_on:
+      - nodejs
+    volumes:
+      - ./html:/srv/www/html
+      - ./logs:/srv/www/logs
+    networks:
+      - backend
+      - frontend
+
   nodejs:
     build: 
       context: ./nodejs
@@ -16,3 +33,12 @@ services:
         - HOME_DIR
     env_file:
       - ./.env
+    networks:
+      - backend
+
+networks:
+  frontend:
+    external:
+      name: proxy_proxy
+  backend:
+    driver: bridge
