@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  redisdata:
+    driver: local
+
 services:
 
   nginx:
@@ -33,6 +37,21 @@ services:
         - PIPENV_DEV
     env_file:
       - ./.env
+    depends_on:
+      - redis
+    networks:
+      - backend
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+      args:
+        - REDIS_IMAGE_VERSION
+    env_file:
+      - ./.env
+    volumes:
+      - redisdata:/data/bases
     networks:
       - backend
 
