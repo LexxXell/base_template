@@ -1,1 +1,22 @@
 version: "3"
+
+services:
+
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+      args:
+        - NGINX_IMAGE_VERSION
+    env_file:
+      - ./.env
+    volumes:
+      - ./html:/srv/www/html
+      - ./logs:/srv/www/logs
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    external:
+      name: proxy_proxy
