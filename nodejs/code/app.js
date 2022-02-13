@@ -1,1 +1,25 @@
-console.log("Hello WOrld!")
+const Redis = require("ioredis");
+const Client = require("pg").Client;
+
+const redis = new Redis(host = process.env.REDIS_HOST ? process.env.REDIS_HOST : "localhost");
+
+const client = new Client({
+    host: process.env.POSTGRES_HOST ? process.env.POSTGRES_HOST : "localhost",
+    user: process.env.POSTGRES_USER ? process.env.POSTGRES_USER : "postgres",
+    password: process.env.POSTGRES_PASSWORD ? process.env.POSTGRES_PASSWORD : "postgres",
+    database: process.env.POSTGRES_DB ? process.env.POSTGRES_DB : "postgres",
+    port: 5432
+})
+
+client.connect()
+client.query('SELECT version()', (err, res) => {
+    console.log(err ? "PostgreSQL " + err.message : res.rows[0]["version"]);
+    client.end();
+});
+
+(async() => {
+    const redisInfo = [];
+    const _redisInfo = (await redis.info("Server")).split("\r\n");
+    [1, 5, 6, 7].forEach(i => redisInfo.push(_redisInfo[i]));
+    console.log(`Redis: ${redisInfo.join(", ")}`);
+})();
