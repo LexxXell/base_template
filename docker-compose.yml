@@ -1,6 +1,27 @@
 version: "3"
 
+volumes:
+  redisdata:
+    driver: local
+
 services:
+
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+      args:
+        - NGINX_IMAGE_VERSION
+    env_file:
+      - ./.env
+    depends_on:
+      - nodejs
+    volumes:
+      - ./html:/srv/www/html
+      - ./logs:/srv/www/logs
+    networks:
+      - backend
+      - frontend
 
   nodejs:
     build: 
@@ -16,3 +37,27 @@ services:
         - HOME_DIR
     env_file:
       - ./.env
+    depends_on:
+      - redis
+    networks:
+      - backend
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+      args:
+        - REDIS_IMAGE_VERSION
+    env_file:
+      - ./.env
+    volumes:
+      - redisdata:/data/bases
+    networks:
+      - backend
+
+networks:
+  frontend:
+    external:
+      name: proxy_proxy
+  backend:
+    driver: bridge

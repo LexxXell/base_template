@@ -5,5 +5,9 @@
     "license": "MIT",
     "scripts": {
         "dev": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.2",
+        "ioredis": "^4.28.5"
     }
 }
