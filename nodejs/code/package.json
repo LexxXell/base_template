@@ -5,5 +5,8 @@
     "license": "MIT",
     "scripts": {
         "dev": "node app.js"
+    },
+    "dependencies": {
+        "ioredis": "^4.28.5"
     }
 }
