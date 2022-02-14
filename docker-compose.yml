@@ -1,1 +1,79 @@
 version: "3"
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
+
+services:
+
+  nodejs:
+    build: 
+      context: ./nodejs
+      dockerfile: Dockerfile
+      args:
+        - NODE_IMAGE_VERSION
+        - NODE_LAUNCH_COMMAND
+        - OS_DEPS
+        - NODE_OS_DEPS
+        - USER_NAME
+        - USER_ID
+        - HOME_DIR
+    env_file:
+      - ./.env
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - backend
+
+  python:
+    build: 
+      context: ./python
+      dockerfile: Dockerfile
+      args:
+        - PYTHON_IMAGE_VERSION
+        - OS_DEPS
+        - PYTHON_OS_DEPS
+        - USER_NAME
+        - USER_ID
+        - HOME_DIR
+        - PIPENV_DEV
+    env_file:
+      - ./.env    
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - backend
+
+  postgres:
+    build: 
+      context: ./postgres
+      dockerfile: Dockerfile
+      args:
+        - POSTGRES_IMAGE_VERSION
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - backend
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+      args:
+        - REDIS_IMAGE_VERSION
+    env_file:
+      - ./.env
+    volumes:
+      - redisdata:/data/bases
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
