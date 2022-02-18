@@ -147,6 +147,10 @@ Clone branch of the template into the project dir.
     git clone --branch=pynongpgrd https://github.com/LexxXell/base_template.git .
     git remote remove origin
 
+Run a reverse proxy server from the proxy directory.
+
+    docker-compose -f proxy/docker-compose.yml up -d
+
 Checking the work of the cloned branch:
 
     docker-compose up --build
