@@ -4,51 +4,6 @@
 
 ---
 
-## **Supported platforms:**
-* Python
-* NodeJS
----
-## **Git branches**
-| Branch     | Disrcription                                                              |
-|------------|---------------------------------------------------------------------------|
-| base       | This is the base branch. Merge the desired branch here and start working. |
-| python     | If you only need Python, use this branch.                                 |
-| nodejs     | If you only need NodeJS, use this branch.                                 |
-| nginx      | If you only need NGINX, use this branch.                                  |
-| postgres   | If you only need PostgreSQL DBMS, use this branch.                        |
-| redis      | If you only need Redis, use this branch.                                  |
-| pgrd       | PostgreSQL DBMS, Redis server                                             |
-| nong       | NodeJS and configured NGINX                                               |
-| nopg       | NodeJS and PostgreSQL DBMS                                                |
-| nord       | NodeJS, Redis server                                                      |
-| nopgrd     | NodeJS, PostgreSQL DBMS, Redis server                                     |
-| nongpg     | NodeJS, PostgreSQL DBMS and configured NGINX                              |
-| nongrd     | NodeJS, Redis server and configured NGINX                                 |
-| nongpgrd   | NodeJS, PostgreSQL DBMS, Redis server and configured NGINX                |
-| pyng       | Python and configured NGINX                                               |
-| pypg       | Python, PostgreSQL DBMS                                                   |
-| pyrd       | Python, Redis server                                                      |
-| pypgrd     | Python, PostgreSQL DBMS, Redis server                                     |
-| pyngpg     | Python, PostgreSQL DBMS and configured NGINX                              |
-| pyngrd     | Python, Redis server and configured NGINX                                 |
-| pyngpgrd   | Python, PostgreSQL DBMS, Redis server and configured NGINX                |
-| pyno       | Python and NodeJS                                                         |
-| pynong     | Python, NodeJS and configured NGINX                                       |
-| pynopg     | Python, NodeJS, PostgreSQL DBMS                                           |
-| pynord     | Python, NodeJS, Redis server                                              |
-| pynopgrd   | Python, NodeJS, PostgreSQL DBMS, Redis server                             |
-| pynongpg   | Python, NodeJS, PostgreSQL DBMS and configured NGINX                      |
-| pynongrd   | Python, NodeJS, Redis server and configured NGINX                         |
-| pynongpgrd | Python, NodeJS, PostgreSQL DBMS, Redis server and configured NGINX        |
-
-Branches containing NGINX, when launched, raise a web server at http://localhost
-
-
-For branches containing NGINX to work, you need to run a reverse proxy server from the proxy directory.
-
-    docker-compose -f proxy/docker-compose.yml up -d
-
----
 ## **Virtual environment variables**
 ***Default values ​​specified***
 
@@ -71,20 +26,6 @@ Specify the necessary AlpineOS system dependencies separated by spaces. Will be 
 
     OS_DEPS=
 
-### NGINX
-
-Select the desired version of NGINX (based on AlpineOS) at https://hub.docker.com
-
-    NGINX_IMAGE_VERSION=1.19-alpine
-
-Specify comma-separated domain names for the web server.
-
-    VIRTUAL_HOST=localhost, 127.0.0.1
-
-(*) You can specify the API port in the container.
-
-    API_PORT=8000
-
 ### Python
 
 Select the desired version of Python (based on AlpineOS) at https://hub.docker.com
@@ -98,43 +39,6 @@ Select the desired version of Python (based on AlpineOS) at https://hub.docker.c
 Specify the necessary AlpineOS system Python dependencies separated by spaces.
 
     PYTHON_OS_DEPS=postgresql-dev gcc python3-dev musl-dev
-
-### NodeJS
-
-Select the desired version of NodeJS (based on AlpineOS) at https://hub.docker.com
-
-    NODE_IMAGE_VERSION=17-alpine
-
-(*) NodeJS project start command.
-
-    NODE_LAUNCH_COMMAND=yarn run dev
-
-Specify the necessary AlpineOS system NodeJS dependencies separated by spaces.
-
-    NODE_OS_DEPS=
-
-### PostgreSQL
-
-Select the desired version of PostgreSQL (based on AlpineOS) at https://hub.docker.com
-
-    POSTGRES_IMAGE_VERSION=13-alpine
-
-(*) PostreSQL global settings. Will be used for all platforms.
-
-    POSTGRES_PASSWORD=postgres
-    POSTGRES_USER=postgres
-    POSTGRES_HOST=postgres
-    POSTGRES_DB=postgres
-
-### Redis server
-
-Select the desired version of Redis server (based on AlpineOS) at https://hub.docker.com
-
-    REDIS_IMAGE_VERSION=6.2-alpine
-
-(*) Redis global settings. Will be used for all platforms.
-
-    REDIS_HOST=redis
 ---
 ## **USAGE**
 
