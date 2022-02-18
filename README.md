@@ -1,9 +1,12 @@
-**This is a docker-compose based application template.**
+# **This is a docker-compose based application template.**
 
-Supported platforms:
+**All used docker images are built on the basis of Alpine OS, it is unacceptable to use images built on the basis of other OS due to incompatibility with package managers.**
+
+## **Supported platforms:**
 * Python
 * NodeJS
 
+## **Git branches**
 | Branch     | Disrcription                                                              |
 |------------|---------------------------------------------------------------------------|
 | base       | This is the base branch. Merge the desired branch here and start working. |
@@ -35,3 +38,38 @@ Supported platforms:
 | pynongpg   | Python, NodeJS, PostgreSQL DBMS and configured NGINX                      |
 | pynongrd   | Python, NodeJS, Redis server and configured NGINX                         |
 | pynongpgrd | Python, NodeJS, PostgreSQL DBMS, Redis server and configured NGINX        |
+
+
+## **Virtual environment variables**
+
+### Base variables
+    USER_NAME=user1
+    USER_ID=1001
+    HOME_DIR=/home/app
+    OS_DEPS=
+
+### NGINX
+    NGINX_IMAGE_VERSION=1.19-alpine
+    VIRTUAL_HOST=localhost, 127.0.0.1
+    API_PORT=8000
+
+### Python
+    PYTHON_IMAGE_VERSION=3.9.5-alpine
+    PIPENV_DEV=false
+    PYTHON_OS_DEPS=postgresql-dev gcc python3-dev musl-dev
+
+### NodeJS
+    NODE_IMAGE_VERSION=17-alpine
+    NODE_LAUNCH_COMMAND=yarn run dev
+    NODE_OS_DEPS=
+
+### PostgreSQL
+    POSTGRES_IMAGE_VERSION=13-alpine
+    POSTGRES_PASSWORD=postgres
+    POSTGRES_USER=postgres
+    POSTGRES_HOST=postgres
+    POSTGRES_DB=postgres
+
+### Redis server
+    REDIS_IMAGE_VERSION=6.2-alpine
+    REDIS_HOST=redis
