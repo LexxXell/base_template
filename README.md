@@ -43,6 +43,11 @@
 
 Branches containing NGINX, when launched, raise a web server at http://localhost
 
+
+For branches containing NGINX to work, you need to run a reverse proxy server from the proxy directory.
+
+    docker-compose -f proxy/docker-compose.yml up -d
+
 ---
 ## **Virtual environment variables**
 ***Default values ​​specified***
