@@ -26,6 +26,20 @@ Specify the necessary AlpineOS system dependencies separated by spaces. Will be 
 
     OS_DEPS=
 
+### NGINX
+
+Select the desired version of NGINX (based on AlpineOS) at https://hub.docker.com
+
+    NGINX_IMAGE_VERSION=1.19-alpine
+
+Specify comma-separated domain names for the web server.
+
+    VIRTUAL_HOST=localhost, 127.0.0.1
+
+(*) You can specify the API port in the container.
+
+    API_PORT=8000
+
 ### Python
 
 Select the desired version of Python (based on AlpineOS) at https://hub.docker.com
