@@ -41,35 +41,88 @@
 
 
 ## **Virtual environment variables**
+***Default values ​​specified***
+
+**Items marked with (*) should only be changed if you understand what you are doing.**
 
 ### Base variables
+
+Distributed for platform containers (Python, NodeJS)
+
+Use the user and user ID under which the application is launched. This is necessary for correct access to files on mounted volumes.
+
     USER_NAME=user1
     USER_ID=1001
+
+(*) You can specify the desired home directory in the container.
+
     HOME_DIR=/home/app
+
+Specify the necessary AlpineOS system dependencies separated by spaces. Will be used for all platforms.
+
     OS_DEPS=
 
 ### NGINX
+
+Select the desired version of NGINX (based on AlpineOS) at https://hub.docker.com
+
     NGINX_IMAGE_VERSION=1.19-alpine
+
+Specify comma-separated domain names for the web server.
+
     VIRTUAL_HOST=localhost, 127.0.0.1
+
+(*) You can specify the API port in the container.
+
     API_PORT=8000
 
 ### Python
+
+Select the desired version of Python (based on AlpineOS) at https://hub.docker.com
+
     PYTHON_IMAGE_VERSION=3.9.5-alpine
+
+(*) If PipENV is used, this variable enables --dev packages to be installed.
+
     PIPENV_DEV=false
+
+Specify the necessary AlpineOS system Python dependencies separated by spaces.
+
     PYTHON_OS_DEPS=postgresql-dev gcc python3-dev musl-dev
 
 ### NodeJS
+
+Select the desired version of NodeJS (based on AlpineOS) at https://hub.docker.com
+
     NODE_IMAGE_VERSION=17-alpine
+
+(*) NodeJS project start command.
+
     NODE_LAUNCH_COMMAND=yarn run dev
+
+Specify the necessary AlpineOS system NodeJS dependencies separated by spaces.
+
     NODE_OS_DEPS=
 
 ### PostgreSQL
+
+Select the desired version of PostgreSQL (based on AlpineOS) at https://hub.docker.com
+
     POSTGRES_IMAGE_VERSION=13-alpine
+
+(*) PostreSQL global settings. Will be used for all platforms.
+
     POSTGRES_PASSWORD=postgres
     POSTGRES_USER=postgres
     POSTGRES_HOST=postgres
     POSTGRES_DB=postgres
 
 ### Redis server
+
+Select the desired version of Redis server (based on AlpineOS) at https://hub.docker.com
+
     REDIS_IMAGE_VERSION=6.2-alpine
+
+(*) Redis global settings. Will be used for all platforms.
+
     REDIS_HOST=redis
